@@ -1,0 +1,35 @@
+body {
+    display: grid;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f0eef1;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    padding: 50px;
+    background-color: white;
+}
+
+div {
+    display: flex;
+    background-color: white;
+    width: 250px;
+    height: 250px;
+    border-radius: 50px 50px 50px 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    display: grid;
+}
+
+article {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 15px;
+}
