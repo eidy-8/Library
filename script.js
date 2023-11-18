@@ -1,6 +1,18 @@
 var myLibrary = [];
 var id = "";
 var holding = 0;
+const popup = document.getElementById('popup');
+
+//code for popup box
+const openDialogButton = document.getElementById('openDialogButton');
+const closePopup = document.getElementById('closePopup');
+openDialogButton.addEventListener('click', () => {
+    popup.showModal();
+});
+closePopup.addEventListener('click', (event) => {
+    event.preventDefault();
+    popup.close();
+});
 
 function submitForm() { //push each book's object into the myLibrary array
     var formData = {
@@ -83,15 +95,4 @@ function toggleReadStatus(div, button) {
         button.classList.add('on');
     }
 }
-
-//code for popup box
-const openDialogButton = document.getElementById('openDialogButton');
-const closePopup = document.getElementById('closePopup');
-openDialogButton.addEventListener('click', () => {
-    popup.showModal();
-});
-closePopup.addEventListener('click', (event) => {
-    event.preventDefault();
-    popup.close();
-});
 
