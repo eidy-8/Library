@@ -1,92 +1,8 @@
 var myLibrary = [];
 var id = "";
-var holding = 0; //variable to create different id names
-let isOn = false; 
+var holding = 0;
 
-function book(title, author, pages, read) {
-    this.title  = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
-
-function toggleState(){
-    isOn = !isOn;
-      const button = document.getElementById('toggleButton');
-
-      if (isOn) {
-        button.textContent = 'Read';
-        button.classList.remove('off');
-        button.classList.add('on');
-      } else {
-        button.textContent = 'Not Read';
-        button.classList.remove('on');
-        button.classList.add('off');
-    }
-}
-
-book.prototype.toggleState = toggleState;
-
-function displayBooks() {
-    differId();
-
-    var newDiv = document.createElement('div');
-    newDiv.id = `${id}`;
-    var outputText = "";
-
-    for (var i = 0; i < myLibrary.length; i++) {
-        if (i == 2) {
-            outputText += "Pages: ";
-        } 
-        outputText += myLibrary[i] + '\n\n';
-    }
-
-    console.log(outputText);
-    document.getElementById('myArticle').appendChild(newDiv);
-    document.getElementById(`${id}`).innerText = outputText;
-
-    var button = document.createElement("button");
-    button.innerText = "Remove";
-
-    var currentId = id;
-    button.addEventListener("click", function() {
-        var divToRemove = document.getElementById(`${currentId}`);
-        divToRemove.parentNode.removeChild(divToRemove);
-    });
-    newDiv.appendChild(button);
-
-    //toggle button code
-    var button = document.createElement("button");
-    button.id = "toggleButton";
-
-    var currentId = id;
-    button.addEventListener("click", function(){
-        toggleState();
-    });
-    newDiv.appendChild(button);
-
-    console.log(myLibrary[3]);
-    if (myLibrary[3] == "yes") {
-        button.textContent = 'Read';
-        button.classList.remove('off');
-        button.classList.add('on');
-    } else {
-        button.textContent = 'Not Read';
-        button.classList.remove('on');
-        button.classList.add('off');
-    }
-
-    myLibrary = [];
-}
-
-
-function differId() {
-    id = holding + 1;
-    holding = id;
-    return id;
-}
-
-function submitForm() {
+function submitForm() { //push each book's object into the myLibrary array
     var formData = {
       title: document.getElementById('title').value,
       author: document.getElementById('author').value,
@@ -101,6 +17,74 @@ function submitForm() {
     displayBooks();
 }
 
+function displayBooks() {
+    differId();
+
+    var newDiv = document.createElement('div');
+    newDiv.id = `${id}`;
+    var outputText = "";
+
+    for (var i = 0; i < myLibrary.length; i++) { //generate the string to be displayed on the book div
+        if (i == 2) {
+            outputText += "Pages: ";
+        } 
+        outputText += myLibrary[i] + '\n\n';
+    }
+
+    console.log(outputText);
+    document.getElementById('myArticle').appendChild(newDiv);
+    document.getElementById(`${id}`).innerText = outputText;
+
+    var button = document.createElement("button");
+    button.innerText = "Remove";
+
+    var currentId = id; //store current id so the remove button is linked to the actual ID
+    button.addEventListener("click", function() {
+        var divToRemove = document.getElementById(`${currentId}`);
+        divToRemove.parentNode.removeChild(divToRemove);
+    });
+    newDiv.appendChild(button);
+
+    //code for toggle button
+    var toggleButton = document.createElement("button");
+    toggleButton.addEventListener("click", function(){
+        toggleReadStatus(newDiv, toggleButton);
+    });
+
+    if (myLibrary[3] == "yes") { //if the read value is yes then the button display as read
+        toggleButton.textContent = 'Read';
+        toggleButton.classList.remove('off');
+        toggleButton.classList.add('on');
+    } else {
+        toggleButton.textContent = 'Not Read';
+        toggleButton.classList.remove('on');
+        toggleButton.classList.add('off');
+    }
+
+    newDiv.appendChild(toggleButton);
+
+    myLibrary = [];
+}
+
+function differId() { //generate new id numbers to distinguish the divs created
+    id = holding + 1;
+    holding = id;
+    return id;
+}
+
+function toggleReadStatus(div, button) {
+    if (button.textContent === 'Read') {
+        button.textContent = 'Not Read';
+        button.classList.remove('on');
+        button.classList.add('off');
+    } else {
+        button.textContent = 'Read';
+        button.classList.remove('off');
+        button.classList.add('on');
+    }
+}
+
+//code for popup box
 const openDialogButton = document.getElementById('openDialogButton');
 const closePopup = document.getElementById('closePopup');
 openDialogButton.addEventListener('click', () => {
@@ -110,5 +94,4 @@ closePopup.addEventListener('click', (event) => {
     event.preventDefault();
     popup.close();
 });
-
 
