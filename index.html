@@ -9,15 +9,42 @@
 </head>
 <body>
   <header>
-    <button id="myButton">Add Book</button>
+    <p class="logo">Library</p>
   </header>
 
-  <article id="myArticle">
+  
+  <button id="openDialogButton">ADD NEW BOOK</button>
+  <dialog id="popup">
+      <div class="box">
+        <label for="title">Book's title</label>
+        <input type="text" name="title" id="title" required>
+      </div>
+      <div class="box">
+        <label for="author">Author's name</label>
+        <input type="text" name="author" id="author" required>
+      </div>
+      <div class="box">
+        <label for="pages">Page quantity</label>
+        <input type="number" name="pages" id="pages" required>
+      </div>
+      <div class="box">
+        <label for="read">Have you ever read this book?</label>
+        <label>
+          <input type="radio" name="read" value="yes" required> Yes
+        </label>
+        <label>
+          <input type="radio" name="read" value="no"> No
+        </label>
+      </div>
+      <input type="button" value="Add Book" onclick="submitForm()">
+      <button id="closePopup">Close</button>
+  </dialog>
+  
 
+  <article id="myArticle">
+    <!--The created divs are displayed here-->
   </article>
 
-  <footer>
-
-  </footer>
+  <footer>Made by me</footer>
 </body>
 </html>
