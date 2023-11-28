@@ -43,7 +43,6 @@ function displayBooks() {
         outputText += myLibrary[i] + '\n\n';
     }
 
-    console.log(outputText);
     document.getElementById('myArticle').appendChild(newDiv);
     document.getElementById(`${id}`).innerText = outputText;
 
