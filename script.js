@@ -9,8 +9,7 @@ const closePopup = document.getElementById('closePopup');
 openDialogButton.addEventListener('click', () => {
     popup.showModal();
 });
-closePopup.addEventListener('click', (event) => {
-    event.preventDefault();
+closePopup.addEventListener('click', () => {
     popup.close();
 });
 
